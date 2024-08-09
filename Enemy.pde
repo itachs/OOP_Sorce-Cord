@@ -23,24 +23,30 @@ class Enemy extends Character {
       hp = 3;
       size = 50;
       st = 3;
-      bullet_speed = 5;
+      bullet_speed = -5;
+      bullet_size = 7;
+      println(1);
     } else if (level == 2) {
       hp = 5;
       size = 70;
       st = 5;
-      bullet_speed = 7;
+      bullet_speed = -7;
+      bullet_size = 15;
+      println(2);
     } else {
       hp = 8;
       size = 100;
       st = 3;
-      bullet_speed = 10;
+      bullet_speed = -10;
+      bullet_size = 22;
+      println(3);
     }
   }
 
   void addEnemy() {
     float xx = random(size, width - size);
     float yy = random(size, 100);
-    Enemy newEnemy = new Enemy(xx, yy, 1);
+    Enemy newEnemy = new Enemy(xx, yy, enemyLevel);
     enemies.add(newEnemy);
   }
 
@@ -50,20 +56,35 @@ class Enemy extends Character {
     }
   }
 
-  void updata(Bullet b, Character c) {
+  void updata(Bullet b) {
     if (b.isHit(player) == 1) {
-      hp -= player.st;
+      print("playerに当てた");
+      b.destroy();
+      player.hp -= st;
     }
   }
 
 
   boolean isDie() {
-    return hp < 1;
+    
+    
+    if(hp < 1){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 
   boolean isOut() {
-    return y > height;
+
+
+    if(y > height){
+      gameover.over = true;
+      return true;
+    }else{
+      return false;
+    }
   }
 
   void shot() {

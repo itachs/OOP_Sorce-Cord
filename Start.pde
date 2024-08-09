@@ -9,7 +9,6 @@ class Start{
     text("SHOOTING_GAME", width/2, height*0.3);
     text("select level", width/2, height*0.4);
     fill(255,0,0);
-    
     for(int i=0;i<3;i++){
       noStroke();
       if(dist(mouseX,mouseY,50+d/2+i*(d+15),height*0.55)<d/2){

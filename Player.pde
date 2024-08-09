@@ -1,7 +1,7 @@
 class Player extends Character {
   int n = 0;
-  Player(int x, int y, int level) {
 
+  Player(int x, int y, int level) {
     super(x, y, level);
   }
 
@@ -27,24 +27,45 @@ class Player extends Character {
   void setStatas(int level) {
     bullet_type = 2;//1:enemy 2:player
     if (level == 1) {
+      hp = 50;
       size = 10;
       st = 1;
       bullet_speed = 10;
+      bullet_size = 7;
     } else if (level == 2) {
+      hp = 100;
       size = 15;
       st = 2;
       bullet_speed = 20;
+      bullet_size = 10;
     } else {
+      hp = 200;
       size = 20;
       st = 3;
       bullet_speed = 40;
+      bullet_size = 13;
     }
   }
   
-  void updata(Bullet b, Character e){
-    if(b.isHit(e) == 1){
-      hp -= e.st;
+  void updata(Bullet b, Enemy e){
+    if(b.isHit(e) == 2){
+      print("enemyに当てた");
+      b.destroy();
+      e.hp -= st;
     }
+  }
+  
+  boolean isDie(){
+    if(hp < 1){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
+  void levelUp(){
+    level ++;
+    setStatas(level);
   }
 
 

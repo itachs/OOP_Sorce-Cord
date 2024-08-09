@@ -6,11 +6,14 @@ abstract class Character {
   color col;
   int bullet_speed;
   int bullet_type;
+  int bullet_size;
+  int level;
+
 
   Character(float x, float y, int level) {
     this.x = x;
     this.y = y;
-
+    this.level = level;
     setStatas(level);
   }
 
@@ -20,13 +23,9 @@ abstract class Character {
     text(hp, x- 5, y + 10);
     fill(255);
   }
-  
-  
-  
-  
-  abstract void updata(Bullet b, Character c);
   abstract void display();
   abstract void move();
   abstract void shot();
   abstract void setStatas(int level);
+  
 }
